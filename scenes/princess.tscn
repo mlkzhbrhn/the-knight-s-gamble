@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://dm7r6seg4xh32"]
+
+[ext_resource type="Script" uid="uid://b5krmrekkl1fv" path="res://scripts/princess.gd" id="1_h8nea"]
+[ext_resource type="Texture2D" uid="uid://c0lemho8vybv7" path="res://assets/knight_f/Idle_KG_1.png" id="1_o4716"]
+[ext_resource type="Script" uid="uid://dxyn4wvix20lc" path="res://scripts/win_zone.gd" id="3_rl5q2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t68o"]
+atlas = ExtResource("1_o4716")
+region = Rect2(0, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8nea"]
+atlas = ExtResource("1_o4716")
+region = Rect2(100, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl5q2"]
+atlas = ExtResource("1_o4716")
+region = Rect2(200, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8pdw"]
+atlas = ExtResource("1_o4716")
+region = Rect2(300, 0, 100, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_juk0a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t68o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8nea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl5q2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8pdw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8pdw"]
+radius = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_juk0a"]
+radius = 19.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_h8nea")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_juk0a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 16)
+shape = SubResource("CircleShape2D_d8pdw")
+
+[node name="WinZone" type="Area2D" parent="."]
+position = Vector2(1, 16)
+script = ExtResource("3_rl5q2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinZone"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_juk0a")
+
+[connection signal="body_entered" from="WinZone" to="WinZone" method="_on_body_entered"]

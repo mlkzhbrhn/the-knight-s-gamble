@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck45xynbk2y48"]
+
+[ext_resource type="Texture2D" uid="uid://pq0e2gsyjd7l" path="res://assets/Thank You.png" id="1_okh34"]
+[ext_resource type="Script" uid="uid://bogngtkr550fo" path="res://scripts/button.gd" id="1_ulig0"]
+
+[node name="control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_okh34")
+
+[node name="Button" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 364.0
+offset_right = 841.53296
+offset_bottom = 599.0
+text = "PLAY AGAIN"
+script = ExtResource("1_ulig0")
